@@ -20,167 +20,179 @@ function StudentDashboard() {
   };
 
   const upcomingMealOffs = [
-    {
-      date: "19 Jun 2026",
-      meal: "Lunch",
-    },
-    {
-      date: "20 Jun 2026",
-      meal: "Dinner",
-    },
-    {
-      date: "23 Jun 2026",
-      meal: "Breakfast",
-    },
+    { date: "19 Jun 2026", meal: "Lunch" },
+    { date: "20 Jun 2026", meal: "Dinner" },
+    { date: "23 Jun 2026", meal: "Breakfast" },
   ];
 
   return (
-    <div className="min-h-screen flex bg-slate-100">
-      {/* Sidebar */}
-      <div className="w-64 bg-slate-900 text-white p-6 shadow-xl">
-        <h1 className="text-3xl font-bold mb-10">MessOps</h1>
+    <div className="min-h-screen flex bg-slate-950 text-white">
+      <div className="w-72 bg-slate-900 border-r border-slate-800 p-6 shadow-xl">
+        <div className="mb-10">
+          <h1 className="text-3xl font-bold">MessOps</h1>
+          <p className="text-slate-400 text-sm mt-2">Student Portal</p>
+        </div>
 
-        <ul className="space-y-5">
-          <li className="cursor-pointer hover:text-blue-400 transition">
-            Dashboard
-          </li>
-
-          <li className="cursor-pointer hover:text-blue-400 transition">
-            Today's Menu
-          </li>
-
-          <li className="cursor-pointer hover:text-blue-400 transition">
-            Meal Off
-          </li>
-
-          <li className="cursor-pointer hover:text-blue-400 transition">
-            QR Pass
-          </li>
-
-          <li className="cursor-pointer hover:text-blue-400 transition">
-            History
-          </li>
-
-          <li className="cursor-pointer hover:text-blue-400 transition">
-            Profile
-          </li>
+        <ul className="space-y-3">
+          {[
+            "Dashboard",
+            "Today's Menu",
+            "Meal Off",
+            "QR Pass",
+            "History",
+            "Profile",
+          ].map((item) => (
+            <li
+              key={item}
+              className="cursor-pointer rounded-xl px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white transition"
+            >
+              {item}
+            </li>
+          ))}
         </ul>
+
+        <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+          <p className="text-slate-400 text-sm">Meal Off Limit</p>
+          <p className="text-2xl font-bold mt-1">
+            {mealOffUsed}/{mealOffLimit}
+          </p>
+          <p className="text-xs text-slate-500 mt-2">
+            Remaining {mealOffLimit - mealOffUsed}
+          </p>
+        </div>
       </div>
 
-      {/* Main */}
-      <div className="flex-1 p-8">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-2xl p-8 shadow-lg mb-8">
+      <div className="flex-1 p-8 overflow-auto">
+        <div className="rounded-3xl bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 p-8 shadow-2xl border border-white/10 mb-8">
           <h1 className="text-4xl font-bold">Welcome Back, Himanshu 👋</h1>
-
-          <p className="mt-2 text-blue-100">
-            Smart Hostel Mess Management Platform
+          <p className="mt-3 text-blue-100/80">
+            Track your meals, meal-offs, and monthly savings in one place.
           </p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
-            <h3 className="text-gray-500 mb-2">Meals Consumed</h3>
-
-            <p className="text-4xl font-bold text-blue-600">{mealsConsumed}</p>
-
-            <p className="text-gray-400">Out of {totalMeals} meals</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl p-6 hover:-translate-y-1 transition">
+            <h3 className="text-slate-400 mb-2">Meals Consumed</h3>
+            <p className="text-4xl font-bold text-blue-400">{mealsConsumed}</p>
+            <p className="text-slate-500 mt-2">Out of {totalMeals} meals</p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
-            <h3 className="text-gray-500 mb-2">Meal Off Used</h3>
-
-            <p className="text-4xl font-bold text-red-500">{mealOffUsed}</p>
-
-            <p className="text-gray-400">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl p-6 hover:-translate-y-1 transition">
+            <h3 className="text-slate-400 mb-2">Meal Off Used</h3>
+            <p className="text-4xl font-bold text-rose-400">{mealOffUsed}</p>
+            <p className="text-slate-500 mt-2">
               Remaining {mealOffLimit - mealOffUsed}
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 hover:scale-105 transition">
-            <h3 className="text-gray-500 mb-2">Food Saved</h3>
-
-            <p className="text-4xl font-bold text-green-500">{foodSaved} Kg</p>
-
-            <p className="text-gray-400">This Month</p>
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl shadow-xl p-6 hover:-translate-y-1 transition">
+            <h3 className="text-slate-400 mb-2">Food Saved</h3>
+            <p className="text-4xl font-bold text-emerald-400">
+              {foodSaved} Kg
+            </p>
+            <p className="text-slate-500 mt-2">Approximate this month</p>
           </div>
         </div>
 
-        {/* Today's Menu */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-          <h2 className="text-2xl font-bold mb-6">Today's Menu</h2>
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl shadow-xl p-6 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold">Today's Menu</h2>
+            <span className="text-sm rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-blue-300">
+              Live Menu
+            </span>
+          </div>
 
-          <div className="grid grid-cols-3 gap-6">
-            <div className="bg-orange-50 rounded-xl p-5">
-              <h3 className="font-bold text-lg">Breakfast</h3>
-
-              <p className="text-gray-600">{todayMenu.breakfast}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="rounded-2xl bg-orange-500/10 border border-orange-500/20 p-5">
+              <h3 className="font-semibold text-orange-300 text-lg mb-2">
+                Breakfast
+              </h3>
+              <p className="text-slate-200">{todayMenu.breakfast}</p>
             </div>
 
-            <div className="bg-green-50 rounded-xl p-5">
-              <h3 className="font-bold text-lg">Lunch</h3>
-
-              <p className="text-gray-600">{todayMenu.lunch}</p>
+            <div className="rounded-2xl bg-emerald-500/10 border border-emerald-500/20 p-5">
+              <h3 className="font-semibold text-emerald-300 text-lg mb-2">
+                Lunch
+              </h3>
+              <p className="text-slate-200">{todayMenu.lunch}</p>
             </div>
 
-            <div className="bg-purple-50 rounded-xl p-5">
-              <h3 className="font-bold text-lg">Dinner</h3>
-
-              <p className="text-gray-600">{todayMenu.dinner}</p>
+            <div className="rounded-2xl bg-purple-500/10 border border-purple-500/20 p-5">
+              <h3 className="font-semibold text-purple-300 text-lg mb-2">
+                Dinner
+              </h3>
+              <p className="text-slate-200">{todayMenu.dinner}</p>
             </div>
           </div>
         </div>
 
-        {/* Status + Upcoming Offs */}
-        <div className="grid grid-cols-2 gap-6">
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-4">Today's Status</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl shadow-xl p-6">
+            <h2 className="text-2xl font-bold mb-6">Today's Meal Status</h2>
 
-            <div className="space-y-3">
-              <div className="flex justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between rounded-2xl bg-slate-950/70 border border-slate-800 px-4 py-4">
                 <span>Breakfast</span>
-                <span className="text-green-600 font-semibold">
+                <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-semibold text-emerald-300">
                   {todayStatus.breakfast}
                 </span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex items-center justify-between rounded-2xl bg-slate-950/70 border border-slate-800 px-4 py-4">
                 <span>Lunch</span>
-                <span className="text-red-500 font-semibold">
+                <span className="rounded-full bg-rose-500/10 px-3 py-1 text-sm font-semibold text-rose-300">
                   {todayStatus.lunch}
                 </span>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex items-center justify-between rounded-2xl bg-slate-950/70 border border-slate-800 px-4 py-4">
                 <span>Dinner</span>
-                <span className="text-green-600 font-semibold">
+                <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-semibold text-emerald-300">
                   {todayStatus.dinner}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold mb-4">Upcoming Meal Offs</h2>
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl shadow-xl p-6">
+            <h2 className="text-2xl font-bold mb-6">Upcoming Meal Offs</h2>
 
             <div className="space-y-3">
               {upcomingMealOffs.length === 0 ? (
-                <p className="text-gray-500">No Upcoming Meal Offs</p>
+                <p className="text-slate-400">No upcoming meal offs.</p>
               ) : (
-                upcomingMealOffs.map((off, index) => (
+                upcomingMealOffs.map((off) => (
                   <div
-                    key={index}
-                    className="flex justify-between border-b pb-2"
+                    key={`${off.date}-${off.meal}`}
+                    className="flex items-center justify-between rounded-2xl bg-slate-950/70 border border-slate-800 px-4 py-4"
                   >
-                    <span>{off.date}</span>
-
-                    <span className="font-semibold text-red-500">
+                    <span className="text-slate-300">{off.date}</span>
+                    <span className="rounded-full bg-blue-500/10 px-3 py-1 text-sm font-semibold text-blue-300">
                       {off.meal}
                     </span>
                   </div>
                 ))
               )}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 bg-slate-900 border border-slate-800 rounded-3xl shadow-xl p-6">
+          <h2 className="text-2xl font-bold mb-4">Student Information</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-slate-300">
+            <div className="rounded-2xl bg-slate-950/70 border border-slate-800 p-4">
+              <p className="text-slate-500 text-sm">Name</p>
+              <p className="mt-1 font-semibold">Himanshu Kumar</p>
+            </div>
+
+            <div className="rounded-2xl bg-slate-950/70 border border-slate-800 p-4">
+              <p className="text-slate-500 text-sm">Hostel</p>
+              <p className="mt-1 font-semibold">Hostel A</p>
+            </div>
+
+            <div className="rounded-2xl bg-slate-950/70 border border-slate-800 p-4">
+              <p className="text-slate-500 text-sm">Room</p>
+              <p className="mt-1 font-semibold">101</p>
             </div>
           </div>
         </div>
